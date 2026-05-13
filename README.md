@@ -46,6 +46,18 @@ npm run dev
 
 Open <http://localhost:3000>.
 
+The browser talks to **same-origin** `/api/bi/*` (Next.js Route Handlers), which forward to FastAPI — no CORS issues when you deploy the frontend and API on different hosts.
+
+**`frontend/.env.local`**
+
+| Variable | Purpose |
+|----------|---------|
+| `NEXT_PUBLIC_API_URL` | Upstream FastAPI URL (read on the **server** by the proxy). Example: `http://127.0.0.1:8000` |
+| `BACKEND_URL` | Optional server-only override (e.g. Railway URL on Vercel). Takes precedence over `NEXT_PUBLIC_API_URL` |
+| `NEXT_PUBLIC_BI_USE_PROXY` | Set to `1` to enable the proxy when you only set `BACKEND_URL` |
+
+See `frontend/.env.example` for a template.
+
 ## 📂 Structure
 
 ```
