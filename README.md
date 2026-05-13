@@ -7,7 +7,7 @@ detection, and a natural-language Q&A interface powered by Claude.
 ![Status](https://img.shields.io/badge/status-MVP-blueviolet)
 ![Frontend](https://img.shields.io/badge/frontend-Next.js%2016-black)
 ![Backend](https://img.shields.io/badge/backend-FastAPI-009688)
-![AI](https://img.shields.io/badge/AI-Claude%20Sonnet%204-7c3aed)
+
 
 ## ✨ What it does
 
