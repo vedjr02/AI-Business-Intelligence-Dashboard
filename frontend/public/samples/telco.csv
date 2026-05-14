@@ -1,0 +1,51 @@
+customer_id,tenure,monthly_charges,total_charges,churn,contract,payment_method
+1001,12,65.45,784.20,No,Month-to-month,Electronic check
+1002,24,89.99,2159.76,No,One year,Credit card
+1003,3,45.00,135.00,Yes,Month-to-month,Electronic check
+1004,48,99.15,4759.20,No,Two year,Bank transfer
+1005,6,55.30,331.80,Yes,Month-to-month,Mailed check
+1006,36,79.95,2878.20,No,One year,Credit card
+1007,18,72.10,1297.80,No,Month-to-month,Electronic check
+1008,1,49.99,49.99,Yes,Month-to-month,Electronic check
+1009,60,109.99,6599.40,No,Two year,Credit card
+1010,9,63.25,569.25,Yes,Month-to-month,Electronic check
+1011,15,76.40,1146.00,No,One year,Bank transfer
+1012,42,92.50,3885.00,No,Two year,Credit card
+1013,7,58.00,406.00,Yes,Month-to-month,Electronic check
+1014,30,85.00,2550.00,No,One year,Credit card
+1015,4,52.10,208.40,Yes,Month-to-month,Mailed check
+1016,22,74.35,1635.70,No,One year,Electronic check
+1017,11,61.90,680.90,Yes,Month-to-month,Electronic check
+1018,55,104.20,5731.00,No,Two year,Bank transfer
+1019,8,59.45,475.60,Yes,Month-to-month,Electronic check
+1020,27,81.25,2193.75,No,One year,Credit card
+1021,2,48.00,96.00,Yes,Month-to-month,Electronic check
+1022,33,88.00,2904.00,No,One year,Credit card
+1023,14,69.99,979.86,No,Month-to-month,Electronic check
+1024,19,77.50,1472.50,No,One year,Bank transfer
+1025,5,54.20,271.00,Yes,Month-to-month,Electronic check
+1026,41,91.00,3731.00,No,Two year,Credit card
+1027,10,62.75,627.50,Yes,Month-to-month,Mailed check
+1028,28,83.40,2335.20,No,One year,Credit card
+1029,16,71.20,1139.20,No,One year,Electronic check
+1030,6,56.00,336.00,Yes,Month-to-month,Electronic check
+1031,52,102.30,5319.60,No,Two year,Bank transfer
+1032,13,67.85,882.05,No,Month-to-month,Credit card
+1033,21,78.90,1656.90,No,One year,Electronic check
+1034,9,60.10,540.90,Yes,Month-to-month,Electronic check
+1035,37,87.25,3228.25,No,One year,Credit card
+1036,4,51.50,206.00,Yes,Month-to-month,Electronic check
+1037,44,94.60,4162.40,No,Two year,Bank transfer
+1038,17,73.40,1247.80,No,One year,Credit card
+1039,8,58.90,471.20,Yes,Month-to-month,Electronic check
+1040,29,84.15,2440.35,No,One year,Credit card
+1041,12,66.00,792.00,No,Month-to-month,Bank transfer
+1042,3,47.25,141.75,Yes,Month-to-month,Electronic check
+1043,50,100.00,5000.00,No,Two year,Credit card
+1044,20,79.10,1582.00,No,One year,Electronic check
+1045,7,57.30,401.10,Yes,Month-to-month,Mailed check
+1046,35,86.50,3027.50,No,One year,Credit card
+1047,11,64.40,708.40,Yes,Month-to-month,Electronic check
+1048,58,106.75,6191.50,No,Two year,Bank transfer
+1049,15,70.20,1053.00,No,One year,Credit card
+1050,6,55.55,333.30,Yes,Month-to-month,Electronic check

@@ -1,0 +1,415 @@
+@import "tailwindcss";
+
+/* =========================================================================
+   LUMEN BI — Minimal Design System (2026)
+   Inspired by healthytogether.co — solid surfaces, heavy type, lots of air.
+   ========================================================================= */
+
+:root {
+  /* Surfaces — light mode (default) */
+  --bg-base:        #FAFAFA;
+  --bg-surface:     #FFFFFF;
+  --bg-elevated:    #FFFFFF;
+  --bg-subtle:      #F2F2F2;
+  --bg-overlay:     rgba(255, 255, 255, 0.85);
+  --bg-glass:       rgba(255, 255, 255, 0.7);
+
+  /* Text — light mode */
+  --text-primary:   #0A0A0A;
+  --text-secondary: #404040;
+  --text-tertiary:  #737373;
+  --text-inverse:   #FAFAFA;
+
+  /* Accents — used sparingly for emphasis */
+  --accent:         #0A0A0A;          /* primary action = full contrast */
+  --accent-soft:    #F4F4F5;
+  --accent-blue:    #2563EB;
+  --accent-green:   #10B981;
+  --accent-red:     #EF4444;
+  --accent-amber:   #F59E0B;
+  --accent-violet:  #7C3AED;
+
+  /* Gradient stops — kept for a tiny number of accents (logo + send button) */
+  --grad-1: #6366F1;
+  --grad-2: #8B5CF6;
+  --grad-3: #EC4899;
+
+  /* Borders */
+  --border:         rgba(0, 0, 0, 0.08);
+  --border-strong:  rgba(0, 0, 0, 0.14);
+
+  /* Radius */
+  --radius-sm:  8px;
+  --radius-md:  12px;
+  --radius-lg:  18px;
+  --radius-xl:  24px;
+  --radius-2xl: 32px;
+
+  /* Shadows — featherweight, only on hover */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.08);
+
+  /* Motion */
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-out-expo:  cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-fast: 150ms;
+  --dur-base: 220ms;
+  --dur-slow: 420ms;
+}
+
+[data-theme="dark"] {
+  --bg-base:        #0A0A0A;
+  --bg-surface:     #111111;
+  --bg-elevated:    #161616;
+  --bg-subtle:      #141414;
+  --bg-overlay:     rgba(10, 10, 10, 0.85);
+  --bg-glass:       rgba(20, 20, 20, 0.7);
+
+  --text-primary:   #FAFAFA;
+  --text-secondary: #A3A3A3;
+  --text-tertiary:  #737373;
+  --text-inverse:   #0A0A0A;
+
+  --accent:         #FAFAFA;
+  --accent-soft:    #1F1F1F;
+
+  --border:        rgba(255, 255, 255, 0.08);
+  --border-strong: rgba(255, 255, 255, 0.16);
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.5);
+  --shadow-md: 0 4px 24px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 12px 60px rgba(0, 0, 0, 0.7);
+}
+
+@theme inline {
+  --color-bg-base:      var(--bg-base);
+  --color-bg-surface:   var(--bg-surface);
+  --color-bg-elevated:  var(--bg-elevated);
+  --color-bg-subtle:    var(--bg-subtle);
+  --color-bg-overlay:   var(--bg-overlay);
+  --color-bg-glass:     var(--bg-glass);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-tertiary:  var(--text-tertiary);
+  --color-text-inverse:   var(--text-inverse);
+  --color-accent:        var(--accent);
+  --color-accent-blue:   var(--accent-blue);
+  --color-accent-violet: var(--accent-violet);
+  --color-accent-green:  var(--accent-green);
+  --color-accent-red:    var(--accent-red);
+  --color-accent-amber:  var(--accent-amber);
+  --color-border:        var(--border);
+  --color-border-strong: var(--border-strong);
+  --font-sans:           var(--font-inter);
+}
+
+/* =========================================================================
+   Base
+   ========================================================================= */
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-family: var(--font-inter), ui-sans-serif, system-ui, -apple-system, sans-serif;
+  background: var(--bg-base);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  background: var(--bg-base);
+  color: var(--text-primary);
+  font-feature-settings: "cv11", "ss01", "ss03";
+  position: relative;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* =========================================================================
+   Lenis smooth scroll — required CSS for the library to work.
+   Without these rules wheel events get intercepted but never applied.
+   ========================================================================= */
+html.lenis, html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/* Custom scrollbar — slim, monochrome */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: var(--border-strong);
+  border-radius: 999px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-tertiary);
+  background-clip: padding-box;
+  border: 2px solid transparent;
+}
+
+::selection {
+  background: var(--text-primary);
+  color: var(--text-inverse);
+}
+
+*:focus-visible {
+  outline: 2px solid var(--text-primary);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+/* =========================================================================
+   Typography utilities — HT-style: huge, bold, tight, high-contrast.
+   We push Inter weights 800/900 for display so it reads as a grotesque.
+   ========================================================================= */
+
+.text-display {
+  font-weight: 800;
+  font-size: clamp(3rem, 8.5vw, 6.5rem);
+  line-height: 0.95;
+  letter-spacing: -0.045em;
+  color: var(--text-primary);
+}
+.text-h1 {
+  font-weight: 800;
+  font-size: clamp(2.25rem, 5vw, 4rem);
+  line-height: 1;
+  letter-spacing: -0.035em;
+  color: var(--text-primary);
+}
+.text-h2 {
+  font-weight: 700;
+  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  color: var(--text-primary);
+}
+.text-h3 {
+  font-weight: 700;
+  font-size: 1.375rem;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+}
+.text-body {
+  font-size: 1rem;
+  line-height: 1.6;
+  font-weight: 400;
+}
+.text-lead {
+  font-size: clamp(1.125rem, 1.5vw, 1.375rem);
+  line-height: 1.45;
+  font-weight: 400;
+  color: var(--text-secondary);
+  letter-spacing: -0.01em;
+}
+.eyebrow {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+}
+
+/* =========================================================================
+   Subtle gradients — reserved for primary CTAs + brand mark ONLY.
+   ========================================================================= */
+
+.bg-gradient-brand {
+  background: linear-gradient(135deg, var(--grad-1) 0%, var(--grad-2) 50%, var(--grad-3) 100%);
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, var(--grad-1), var(--grad-2) 50%, var(--grad-3));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* =========================================================================
+   Cards — solid, bordered, no glass. Subtle lift on hover.
+   ========================================================================= */
+
+.card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  transition: all var(--dur-base) var(--ease-out-quart);
+}
+
+.card-interactive {
+  cursor: pointer;
+}
+.card-interactive:hover {
+  border-color: var(--border-strong);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+.card-interactive:active {
+  transform: translateY(-1px) scale(0.995);
+}
+
+/* =========================================================================
+   "Glass" tokens are still referenced by a few components — make them
+   degrade gracefully to solid surfaces for the minimal aesthetic.
+   ========================================================================= */
+
+.glass {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+}
+.glass-strong {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-md);
+}
+.glass-bar {
+  background: var(--bg-overlay);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid var(--border);
+}
+
+/* =========================================================================
+   Primary CTA — solid contrast button (HT-style: black-on-white / white-on-black).
+   ========================================================================= */
+
+.btn-primary-solid {
+  background: var(--text-primary);
+  color: var(--text-inverse);
+  transition: transform var(--dur-base) var(--ease-out-quart),
+              opacity var(--dur-base) var(--ease-out-quart);
+}
+.btn-primary-solid:hover {
+  transform: translateY(-1px);
+  opacity: 0.9;
+}
+.btn-primary-solid:active {
+  transform: translateY(0) scale(0.98);
+}
+
+/* Legacy gradient class — kept ONLY for the QueryBar send button (small accent) */
+.btn-primary-gradient {
+  background: linear-gradient(135deg, var(--grad-1) 0%, var(--grad-2) 60%, var(--grad-3) 100%);
+  background-size: 200% 200%;
+  background-position: 0% 50%;
+  transition: background-position var(--dur-slow) var(--ease-out-quart),
+              transform var(--dur-base) var(--ease-out-quart);
+}
+.btn-primary-gradient:hover {
+  background-position: 100% 50%;
+  transform: translateY(-1px);
+}
+.btn-primary-gradient:active {
+  transform: translateY(0) scale(0.98);
+}
+
+/* =========================================================================
+   Skeleton
+   ========================================================================= */
+
+.skeleton {
+  position: relative;
+  overflow: hidden;
+  background: var(--bg-subtle);
+  border-radius: var(--radius-md);
+}
+.skeleton::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(90deg, transparent, var(--border), transparent);
+  animation: shimmer 1.6s infinite;
+}
+@keyframes shimmer {
+  100% { transform: translateX(100%); }
+}
+
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { scrollbar-width: none; }
+
+/* =========================================================================
+   Recharts overrides
+   ========================================================================= */
+
+.recharts-tooltip-cursor { fill: var(--border) !important; opacity: 0.4; }
+.recharts-cartesian-axis-tick text {
+  fill: var(--text-tertiary) !important;
+  font-size: 11px;
+}
+.recharts-cartesian-grid-horizontal line,
+.recharts-cartesian-grid-vertical line {
+  stroke: var(--border) !important;
+}
+
+/* =========================================================================
+   Query bar — opaque solid surface so scrolling content can't bleed through.
+   ========================================================================= */
+
+.query-bar {
+  position: relative;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-strong);
+  box-shadow: var(--shadow-lg);
+}
+
+/* =========================================================================
+   Drop zone states — clean dashed border, no halo.
+   ========================================================================= */
+
+.dropzone-idle {
+  border: 1.5px dashed var(--border-strong);
+  background: var(--bg-surface);
+}
+.dropzone-active {
+  border: 1.5px solid var(--text-primary);
+  background: var(--bg-subtle);
+}
+
+/* =========================================================================
+   Marquee divider — thin line that subtly fades like the HT site
+   ========================================================================= */
+
+.hairline {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border-strong), transparent);
+}
+
+/* =========================================================================
+   Reduced motion
+   ========================================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
