@@ -58,6 +58,32 @@ The browser talks to **same-origin** `/api/bi/*` (Next.js Route Handlers), which
 
 See `frontend/.env.example` for a template.
 
+## ▲ Deploy on Vercel (monorepo)
+
+**I (or any assistant) cannot log into your Vercel or GitHub account** — only you can finish the link in the browser. The steps below take about two minutes.
+
+This repo’s Next.js app lives in **`frontend/`**. If Vercel builds from the repository root, you can get **`404: NOT_FOUND`** and a suspiciously fast build (e.g. a few ms) because there is no Next app at the repo root.
+
+### GitHub → Vercel (recommended)
+
+1. **Vercel → Add New → Project** → import **`vedjr02/AI-Business-Intelligence-Dashboard`**.
+2. Before deploying, open **Configure Project** → **Root Directory** → **Edit** → set to **`frontend`** → **Continue**.
+3. **Environment Variables** (Production, optional until you host the API): **`BACKEND_URL`** = your FastAPI base URL (no trailing slash). The **home page works without it**; uploads / AI need the API or mocks.
+4. **Deploy**.
+
+To fix an existing project: **Settings → General → Root Directory** = **`frontend`** → **Redeploy**.
+
+### CLI (deploy from `frontend/` without changing dashboard root)
+
+```bash
+chmod +x scripts/vercel-deploy.sh   # once
+npx vercel login                     # once per machine
+./scripts/vercel-deploy.sh           # preview
+./scripts/vercel-deploy.sh --prod    # production
+```
+
+The Python API is **not** deployed by Vercel here — host it elsewhere (Railway, Render, Fly.io, etc.) and set **`BACKEND_URL`** on Vercel when ready.
+
 ## 📂 Structure
 
 ```
