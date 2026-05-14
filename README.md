@@ -52,9 +52,9 @@ The browser talks to **same-origin** `/api/bi/*` (Next.js Route Handlers), which
 
 | Variable | Purpose |
 |----------|---------|
-| `NEXT_PUBLIC_API_URL` | Upstream FastAPI URL (read on the **server** by the proxy). Example: `http://127.0.0.1:8000` |
-| `BACKEND_URL` | Optional server-only override (e.g. Railway URL on Vercel). Takes precedence over `NEXT_PUBLIC_API_URL` |
-| `NEXT_PUBLIC_BI_USE_PROXY` | Set to `1` to enable the proxy when you only set `BACKEND_URL` |
+| `BACKEND_URL` | Upstream FastAPI (server-side). **Set this on Vercel** (not exposed to the browser bundle). |
+| `NEXT_PUBLIC_API_URL` | Optional fallback upstream if `BACKEND_URL` is unset. |
+| `NEXT_PUBLIC_BI_MOCK_ONLY` | Set to `1` **only** to force identical mock data for every upload (no API). **Leave unset** so each file is analysed for real. |
 
 See `frontend/.env.example` for a template.
 
@@ -68,7 +68,7 @@ This repo’s Next.js app lives in **`frontend/`**. If Vercel builds from the re
 
 1. **Vercel → Add New → Project** → import **`vedjr02/AI-Business-Intelligence-Dashboard`**.
 2. Before deploying, open **Configure Project** → **Root Directory** → **Edit** → set to **`frontend`** → **Continue**.
-3. **Environment Variables** (Production, optional until you host the API): **`BACKEND_URL`** = your FastAPI base URL (no trailing slash). The **home page works without it**; uploads / AI need the API or mocks.
+3. **Environment Variables** (Production): set **`BACKEND_URL`** to your FastAPI base URL (no trailing slash). Without it, uploads will fail on Vercel (the app now always tries the real pipeline). For a **no-API static demo only**, set **`NEXT_PUBLIC_BI_MOCK_ONLY=1`** (same canned numbers for every file).
 4. **Deploy**.
 
 To fix an existing project: **Settings → General → Root Directory** = **`frontend`** → **Redeploy**.
@@ -106,10 +106,10 @@ See `PROJECT_GUIDE.md` for the full design + architecture brief.
 
 ## 🧪 Try without a backend
 
-The frontend ships with a local mock data layer, so you can preview the
-entire UX (upload → dashboard → AI streaming) without running FastAPI or
-configuring an API key. Simply leave `NEXT_PUBLIC_API_URL` blank in
-`frontend/.env.local`.
+To preview the **same static numbers** on every upload (no FastAPI), set
+**`NEXT_PUBLIC_BI_MOCK_ONLY=1`** in `frontend/.env.local` and restart `npm run dev`.
+By default that variable is **unset**, so uploads go to `/api/bi/upload` → FastAPI
+and each file gets its own KPIs, charts, and preview rows.
 
 ## 📦 Tech stack
 

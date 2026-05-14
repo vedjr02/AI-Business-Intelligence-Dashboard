@@ -12,6 +12,7 @@ import VariableProximity from "@/components/effects/VariableProximity";
 import { saveDataset } from "@/lib/datasetStore";
 import { getMockAnalysis } from "@/lib/mockData";
 import { isApiConfigured, uploadFile } from "@/lib/api";
+import { useToast } from "@/components/providers/ToastProvider";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 32 },
@@ -61,6 +62,7 @@ const STATS = [
 ];
 
 export default function LandingPage() {
+  const { show } = useToast();
   const heroRef = useRef<HTMLElement>(null);
   const headlineRef = useRef<HTMLHeadingElement>(null);
   const { scrollYProgress } = useScroll({
@@ -84,26 +86,35 @@ export default function LandingPage() {
   };
 
   const handleSample = async (filename: string, rows: number) => {
-    try {
-      if (isApiConfigured()) {
-        const res = await fetch(`/samples/${filename}`);
-        if (res.ok) {
-          const blob = await res.blob();
-          const file = new File([blob], filename, { type: "text/csv" });
-          const analysis = await uploadFile(file);
-          saveDataset(analysis);
-          window.location.assign(`/dashboard/${analysis.meta.id}`);
-          return;
-        }
-      }
-    } catch {
-      /* fall through to mock */
+    if (!isApiConfigured()) {
+      const id = crypto.randomUUID();
+      const analysis = getMockAnalysis(id, filename);
+      analysis.meta.row_count = rows;
+      saveDataset(analysis);
+      window.location.assign(`/dashboard/${id}`);
+      return;
     }
-    const id = crypto.randomUUID();
-    const analysis = getMockAnalysis(id, filename);
-    analysis.meta.row_count = rows;
-    saveDataset(analysis);
-    window.location.assign(`/dashboard/${id}`);
+    try {
+      const res = await fetch(`/samples/${filename}`);
+      if (!res.ok) {
+        throw new Error(
+          `Could not load ${filename} from this site (${res.status}).`
+        );
+      }
+      const blob = await res.blob();
+      const file = new File([blob], filename, { type: "text/csv" });
+      const analysis = await uploadFile(file);
+      saveDataset(analysis);
+      window.location.assign(`/dashboard/${analysis.meta.id}`);
+    } catch (err) {
+      const msg =
+        err instanceof Error ? err.message : "Analysis failed. Check the API.";
+      show({
+        variant: "error",
+        title: "Sample could not be analysed",
+        description: `${msg} For live numbers, ensure your FastAPI server is reachable (BACKEND_URL on Vercel) and clear NEXT_PUBLIC_BI_MOCK_ONLY.`,
+      });
+    }
   };
 
   const scrollToUpload = () => {
@@ -272,7 +283,18 @@ export default function LandingPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6, ease: EASE, delay: 0.1 }}
+            className="space-y-4"
           >
+            {!isApiConfigured() && (
+              <p className="text-sm text-[color:var(--text-secondary)] rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-subtle)] px-4 py-3">
+                <span className="font-medium text-[color:var(--text-primary)]">
+                  Static demo mode
+                </span>{" "}
+                — NEXT_PUBLIC_BI_MOCK_ONLY is set, so every file and sample uses
+                the same preset KPIs. Remove it to analyse real uploads via your
+                API.
+              </p>
+            )}
             <DropZone onUpload={handleUpload} />
           </motion.div>
 
