@@ -9,6 +9,8 @@ from dotenv import load_dotenv
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
+from middleware.timing import TimingMiddleware
+
 load_dotenv()
 
 from routers import upload, analyse, query, export
@@ -28,6 +30,8 @@ allowed_origins = [
     if o.strip()
 ]
 
+app.add_middleware(TimingMiddleware)
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=allowed_origins,
@@ -44,7 +48,7 @@ app.include_router(export.router, prefix="/api", tags=["export"])
 
 @app.get("/health")
 def health():
-    return {"status": "ok", "service": "lumen-bi-api"}
+    return {"status": "ok", "service": "lumen-bi-api", "version": "0.1.1"}
 
 
 @app.get("/")
