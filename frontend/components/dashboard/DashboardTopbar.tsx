@@ -7,12 +7,15 @@ import { Logo } from "@/components/ui/Logo";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
-import { cn } from "@/lib/utils";
+import { cn, formatDate } from "@/lib/utils";
+import { CopyButton } from "@/components/ui/CopyButton";
 
 interface DashboardTopbarProps {
   filename: string;
   rowCount: number;
   columnCount: number;
+  uploadedAt?: string;
+  datasetId?: string;
   onExport?: () => void;
   exporting?: boolean;
 }
@@ -21,6 +24,8 @@ export function DashboardTopbar({
   filename,
   rowCount,
   columnCount,
+  uploadedAt,
+  datasetId,
   onExport,
   exporting,
 }: DashboardTopbarProps) {
@@ -56,7 +61,11 @@ export function DashboardTopbar({
             </div>
             <p className="text-[11px] text-[color:var(--text-tertiary)] tabular-nums">
               {rowCount.toLocaleString()} rows · {columnCount} columns
+              {uploadedAt ? ` · ${formatDate(uploadedAt)}` : }
             </p>
+            {datasetId && (
+              <CopyButton value={datasetId} label="Copy ID" className="mt-1" />
+            )}
           </div>
         </motion.div>
 
