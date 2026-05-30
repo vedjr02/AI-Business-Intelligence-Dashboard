@@ -83,6 +83,17 @@ def compute_kpis(df: pd.DataFrame, schema: List[ColumnSchema]) -> List[KPI]:
             )
         )
 
+    # Numeric column count
+    kpis.append(
+        KPI(
+            label="Numeric columns",
+            value=float(len(numeric_cols)),
+            delta=None,
+            format="number",
+            hint="Columns detected as numbers",
+        )
+    )
+
     # Row count
     kpis.append(
         KPI(
@@ -122,8 +133,8 @@ def compute_kpis(df: pd.DataFrame, schema: List[ColumnSchema]) -> List[KPI]:
         )
     )
 
-    # Cap at 4 KPIs for the grid
-    return kpis[:4]
+    # Cap at 5 KPIs for the grid
+    return kpis[:5]
 
 
 def _delta_vs_prior_period(
