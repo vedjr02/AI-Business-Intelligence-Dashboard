@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
@@ -7,7 +8,7 @@ interface SampleDatasetChipProps {
   label: string;
   rows: number;
   emoji: string;
-  onClick: () => void;
+  onClick: () => void | Promise<void>;
 }
 
 export function SampleDatasetChip({
@@ -16,9 +17,15 @@ export function SampleDatasetChip({
   emoji,
   onClick,
 }: SampleDatasetChipProps) {
+  const [busy, setBusy] = useState(false);
+
   return (
     <motion.button
-      onClick={onClick}
+      disabled={busy}
+      onClick={() => {
+        setBusy(true);
+        Promise.resolve(onClick()).finally(() => setBusy(false));
+      }}
       whileHover={{ y: -2, scale: 1.02 }}
       whileTap={{ scale: 0.97 }}
       transition={{ type: "spring", stiffness: 400, damping: 20 }}
@@ -30,7 +37,7 @@ export function SampleDatasetChip({
       <span className="text-[15px] -mt-px" aria-hidden>
         {emoji}
       </span>
-      <span className="font-medium">{label}</span>
+      <span className="font-medium">{busy ? "Loading…" : label}</span>
       <span className="text-[11px] text-[color:var(--text-tertiary)] tabular-nums opacity-80">
         {rows.toLocaleString()} rows
       </span>
