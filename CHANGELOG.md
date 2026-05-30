@@ -48,3 +48,4 @@ All notable changes to Lumen BI.
 - Add GitHub pull request template for contributors.
 - Add batch scripts for incremental micro-commit workflow.
 - Expose API version field on backend /health response.
+- Add BFF /api/bi/health proxy route on the frontend.
