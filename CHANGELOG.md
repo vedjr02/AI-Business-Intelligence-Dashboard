@@ -51,3 +51,4 @@ All notable changes to Lumen BI.
 - Add BFF /api/bi/health proxy route on the frontend.
 - Add ApiStatusBanner to surface live API connectivity.
 - Add RecentDatasets panel backed by sessionStorage index.
+- Add KpiSummary row with copy-all KPIs action.
