@@ -36,3 +36,4 @@ All notable changes to Lumen BI.
 - Disable sample chips while sample CSV is uploading.
 - Add numeric-column KPI and allow five KPI cards in the grid.
 - Sanitize uploaded filenames before persisting analysis.
+- Add client-side checkApiHealth helper for BFF probe.
