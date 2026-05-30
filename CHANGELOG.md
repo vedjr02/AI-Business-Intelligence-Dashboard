@@ -30,3 +30,4 @@ All notable changes to Lumen BI.
 - Improve 404 page copy for clearer navigation.
 - Wire recent-dataset tracking when saving analysis results.
 - Show chart empty states when trend or bar data is unavailable.
+- Link PWA manifest from Next.js root layout metadata.
