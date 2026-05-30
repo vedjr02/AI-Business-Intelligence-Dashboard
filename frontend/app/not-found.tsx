@@ -20,7 +20,7 @@ export default function NotFound() {
           404
         </p>
         <h1 className="text-h2 mb-2">
-          Page <span className="text-gradient">not found</span>
+          This page <span className="text-gradient">doesn&apos;t exist</span>
         </h1>
         <p className="text-sm text-[color:var(--text-secondary)] mb-6">
           That route doesn't exist. Let's get you home.
