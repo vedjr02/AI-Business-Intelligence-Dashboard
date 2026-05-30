@@ -33,3 +33,4 @@ All notable changes to Lumen BI.
 - Link PWA manifest from Next.js root layout metadata.
 - Add SiteFooter and live API status banner on landing page.
 - Add schema panel, recent list, and KPI copy on dashboard.
+- Disable sample chips while sample CSV is uploading.
