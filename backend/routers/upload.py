@@ -26,6 +26,7 @@ MAX_BYTES = int(os.getenv("MAX_FILE_SIZE_MB", "50")) * 1024 * 1024
 async def upload(file: UploadFile = File(...)) -> JSONResponse:
     if not file.filename:
         raise HTTPException(400, detail="Missing filename.")
+    safe_name = os.path.basename(file.filename)
     if not file.filename.lower().endswith(SUPPORTED_EXTS):
         raise HTTPException(
             415, detail=f"Unsupported file type. Allowed: {', '.join(SUPPORTED_EXTS)}"
@@ -58,7 +59,7 @@ async def upload(file: UploadFile = File(...)) -> JSONResponse:
 
     meta = DatasetMeta(
         id=dataset_id,
-        filename=file.filename,
+        filename=safe_name,
         row_count=int(len(df)),
         column_count=int(len(df.columns)),
         uploaded_at=datetime.now(timezone.utc).isoformat(),
@@ -75,7 +76,7 @@ async def upload(file: UploadFile = File(...)) -> JSONResponse:
     ).model_dump(by_alias=True)
 
     # Persist raw file + analysis
-    storage.save_dataset_file(dataset_id, file.filename, content)
+    storage.save_dataset_file(dataset_id, safe_name, content)
     storage.save_analysis(dataset_id, payload)
 
     return JSONResponse(payload)
