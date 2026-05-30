@@ -1,0 +1,16 @@
+{
+  "name": "Lumen BI",
+  "short_name": "Lumen",
+  "description": "AI-powered business intelligence from any CSV or Excel file.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0A0A0A",
+  "theme_color": "#0A0A0A",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "48x48",
+      "type": "image/x-icon"
+    }
+  ]
+}
