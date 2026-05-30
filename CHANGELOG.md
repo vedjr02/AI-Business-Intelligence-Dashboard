@@ -28,3 +28,4 @@ All notable changes to Lumen BI.
 - Expose API version on backend /health endpoint.
 - Track recent uploads whenever saveDataset is called.
 - Improve 404 page copy for clearer navigation.
+- Wire recent-dataset tracking when saving analysis results.
