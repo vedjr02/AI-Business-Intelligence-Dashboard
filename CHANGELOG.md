@@ -47,3 +47,4 @@ All notable changes to Lumen BI.
 - Add shell script to curl backend /health for ops checks.
 - Add GitHub pull request template for contributors.
 - Add batch scripts for incremental micro-commit workflow.
+- Expose API version field on backend /health response.
