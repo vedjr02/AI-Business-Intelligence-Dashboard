@@ -10,6 +10,10 @@ import { AnomalyBanner } from "@/components/dashboard/AnomalyBanner";
 import { DataTable } from "@/components/dashboard/DataTable";
 import { QueryBar } from "@/components/ai/QueryBar";
 import { DashboardSkeleton } from "@/components/dashboard/DashboardSkeleton";
+import { SchemaPanel } from "@/components/dashboard/SchemaPanel";
+import { UploadMeta } from "@/components/dashboard/UploadMeta";
+import { RecentDatasets } from "@/components/dashboard/RecentDatasets";
+import { KpiSummary } from "@/components/dashboard/KpiSummary";
 import { loadDataset, saveDataset } from "@/lib/datasetStore";
 import { fetchAnalysis, isApiConfigured } from "@/lib/api";
 import { useExport } from "@/hooks/useExport";
@@ -71,6 +75,8 @@ export default function DashboardPage({
         filename={data.meta.filename}
         rowCount={data.meta.row_count}
         columnCount={data.meta.column_count}
+        uploadedAt={data.meta.uploaded_at}
+        datasetId={id}
         onExport={exportPdf}
         exporting={exporting}
       />
@@ -89,9 +95,11 @@ export default function DashboardPage({
           <h1 className="text-h1 max-w-3xl">
             Here&rsquo;s what&rsquo;s <span className="text-gradient">happening</span> in your data.
           </h1>
+          <UploadMeta uploadedAt={data.meta.uploaded_at} filename={data.meta.filename} />
         </motion.section>
 
-        <section>
+        <section className="space-y-3">
+          <KpiSummary kpis={data.kpis} />
           <KPIGrid kpis={data.kpis} />
         </section>
 
@@ -105,8 +113,14 @@ export default function DashboardPage({
           <ChartGrid charts={data.charts} />
         </section>
 
-        <section>
-          <DataTable rows={data.preview_rows} schema={data.schema} />
+        <section className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+          <div className="lg:col-span-2">
+            <DataTable rows={data.preview_rows} schema={data.schema} />
+          </div>
+          <div className="space-y-4">
+            <SchemaPanel schema={data.schema} />
+            <RecentDatasets />
+          </div>
         </section>
       </main>
 
