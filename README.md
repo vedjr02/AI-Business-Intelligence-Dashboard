@@ -104,6 +104,14 @@ See `PROJECT_GUIDE.md` for the full design + architecture brief.
 | POST | `/api/query` | Streaming AI Q&A grounded in the dataset |
 | POST | `/api/export/{id}/summary` | AI-written executive summary for PDF |
 
+## ☁️ Free hosting
+
+Frontend: **Vercel** (free). API: **Render** free web service. Set `BACKEND_URL` on Vercel.
+
+## 📋 Changelog
+
+See [CHANGELOG.md](./CHANGELOG.md) for release notes.
+
 ## 🧪 Try without a backend
 
 To preview the **same static numbers** on every upload (no FastAPI), set
