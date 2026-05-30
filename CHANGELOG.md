@@ -34,3 +34,4 @@ All notable changes to Lumen BI.
 - Add SiteFooter and live API status banner on landing page.
 - Add schema panel, recent list, and KPI copy on dashboard.
 - Disable sample chips while sample CSV is uploading.
+- Add numeric-column KPI and allow five KPI cards in the grid.
