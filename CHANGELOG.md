@@ -38,3 +38,4 @@ All notable changes to Lumen BI.
 - Sanitize uploaded filenames before persisting analysis.
 - Add client-side checkApiHealth helper for BFF probe.
 - Show upload date and copyable dataset ID in dashboard topbar.
+- Improve 404 headline copy for clearer wayfinding.
