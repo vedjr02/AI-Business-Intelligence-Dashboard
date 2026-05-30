@@ -40,3 +40,4 @@ All notable changes to Lumen BI.
 - Show upload date and copyable dataset ID in dashboard topbar.
 - Improve 404 headline copy for clearer wayfinding.
 - Document free Vercel + Render hosting stack in README.
+- Clarify ALLOWED_ORIGINS env var for production CORS.
