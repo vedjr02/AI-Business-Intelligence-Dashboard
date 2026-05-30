@@ -32,3 +32,4 @@ All notable changes to Lumen BI.
 - Show chart empty states when trend or bar data is unavailable.
 - Link PWA manifest from Next.js root layout metadata.
 - Add SiteFooter and live API status banner on landing page.
+- Add schema panel, recent list, and KPI copy on dashboard.
