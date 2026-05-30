@@ -53,3 +53,4 @@ All notable changes to Lumen BI.
 - Add RecentDatasets panel backed by sessionStorage index.
 - Add KpiSummary row with copy-all KPIs action.
 - Add UploadMeta relative timestamp under dashboard headline.
+- Add SchemaPanel listing column names and detected types.
