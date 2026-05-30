@@ -61,7 +61,7 @@ export function DashboardTopbar({
             </div>
             <p className="text-[11px] text-[color:var(--text-tertiary)] tabular-nums">
               {rowCount.toLocaleString()} rows · {columnCount} columns
-              {uploadedAt ? ` · ${formatDate(uploadedAt)}` : }
+              {uploadedAt ? ` · ${formatDate(uploadedAt)}` : ""}
             </p>
             {datasetId && (
               <CopyButton value={datasetId} label="Copy ID" className="mt-1" />
