@@ -52,3 +52,4 @@ All notable changes to Lumen BI.
 - Add ApiStatusBanner to surface live API connectivity.
 - Add RecentDatasets panel backed by sessionStorage index.
 - Add KpiSummary row with copy-all KPIs action.
+- Add UploadMeta relative timestamp under dashboard headline.
