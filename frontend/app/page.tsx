@@ -8,6 +8,8 @@ import { SampleDatasetChip } from "@/components/upload/SampleDatasetChip";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { Button } from "@/components/ui/Button";
 import Aurora from "@/components/layout/Aurora";
+import { SiteFooter } from "@/components/layout/SiteFooter";
+import { ApiStatusBanner } from "@/components/layout/ApiStatusBanner";
 import VariableProximity from "@/components/effects/VariableProximity";
 import { saveDataset } from "@/lib/datasetStore";
 import { getMockAnalysis } from "@/lib/mockData";
@@ -258,6 +260,8 @@ export default function LandingPage() {
       {/* ───────────── Hairline divider ───────────── */}
       <div className="hairline" />
 
+      <ApiStatusBanner />
+
       {/* ───────────── Upload section ───────────── */}
       <section id="upload" className="px-6 lg:px-8 py-24 lg:py-32">
         <div className="mx-auto max-w-5xl">
@@ -431,6 +435,7 @@ export default function LandingPage() {
         </motion.div>
       </section>
 
+      <SiteFooter />
     </div>
     </main>
   );
