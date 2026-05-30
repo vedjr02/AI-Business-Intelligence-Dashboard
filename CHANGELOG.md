@@ -41,3 +41,4 @@ All notable changes to Lumen BI.
 - Improve 404 headline copy for clearer wayfinding.
 - Document free Vercel + Render hosting stack in README.
 - Clarify ALLOWED_ORIGINS env var for production CORS.
+- Add column null-rate statistics helper on the backend.
