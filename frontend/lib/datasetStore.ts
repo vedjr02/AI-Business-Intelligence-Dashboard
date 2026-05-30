@@ -1,6 +1,7 @@
 "use client";
 
 import type { AnalysisResult } from "@/types";
+import { trackRecent } from "@/lib/recentDatasets";
 
 /**
  * Tiny client-side store that persists analyzed datasets in sessionStorage
@@ -16,6 +17,7 @@ export function saveDataset(result: AnalysisResult): void {
       `${KEY_PREFIX}${result.meta.id}`,
       JSON.stringify(result)
     );
+    trackRecent(result);
   } catch {
     /* ignore quota errors */
   }
