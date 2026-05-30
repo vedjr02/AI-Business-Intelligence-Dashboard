@@ -19,6 +19,7 @@ export const metadata: Metadata = {
     "Upload any CSV or Excel file and get instant AI-powered insights, anomaly detection, and beautiful reports.",
   applicationName: "Lumen BI",
   authors: [{ name: "Lumen" }],
+  manifest: "/manifest.json",
   keywords: ["AI", "BI", "Dashboard", "Analytics", "Claude", "Data"],
 };
 
