@@ -43,3 +43,4 @@ All notable changes to Lumen BI.
 - Clarify ALLOWED_ORIGINS env var for production CORS.
 - Add column null-rate statistics helper on the backend.
 - Add VisuallyHidden helper and column type label util.
+- Add route-level loading skeletons for dashboard and app root.
