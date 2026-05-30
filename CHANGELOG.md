@@ -29,3 +29,4 @@ All notable changes to Lumen BI.
 - Track recent uploads whenever saveDataset is called.
 - Improve 404 page copy for clearer navigation.
 - Wire recent-dataset tracking when saving analysis results.
+- Show chart empty states when trend or bar data is unavailable.
