@@ -37,3 +37,4 @@ All notable changes to Lumen BI.
 - Add numeric-column KPI and allow five KPI cards in the grid.
 - Sanitize uploaded filenames before persisting analysis.
 - Add client-side checkApiHealth helper for BFF probe.
+- Show upload date and copyable dataset ID in dashboard topbar.
