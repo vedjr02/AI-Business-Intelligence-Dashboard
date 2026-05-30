@@ -45,3 +45,4 @@ All notable changes to Lumen BI.
 - Add VisuallyHidden helper and column type label util.
 - Add route-level loading skeletons for dashboard and app root.
 - Add shell script to curl backend /health for ops checks.
+- Add GitHub pull request template for contributors.
