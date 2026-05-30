@@ -35,3 +35,4 @@ All notable changes to Lumen BI.
 - Add schema panel, recent list, and KPI copy on dashboard.
 - Disable sample chips while sample CSV is uploading.
 - Add numeric-column KPI and allow five KPI cards in the grid.
+- Sanitize uploaded filenames before persisting analysis.
