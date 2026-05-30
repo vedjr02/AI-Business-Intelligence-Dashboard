@@ -24,6 +24,16 @@ function useBiBackendPipeline(): boolean {
 /** False only when `NEXT_PUBLIC_BI_MOCK_ONLY` forces baked-in mock analysis. */
 export const isApiConfigured = (): boolean => useBiBackendPipeline();
 
+export async function checkApiHealth(): Promise<boolean> {
+  if (!useBiBackendPipeline()) return false;
+  try {
+    const res = await fetch(`${PROXY_BASE}/health`, { cache: "no-store" });
+    return res.ok;
+  } catch {
+    return false;
+  }
+}
+
 export async function uploadFile(file: File): Promise<AnalysisResult> {
   if (!useBiBackendPipeline()) {
     throw new Error(
